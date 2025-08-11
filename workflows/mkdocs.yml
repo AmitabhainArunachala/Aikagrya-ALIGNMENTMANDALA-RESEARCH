@@ -1,0 +1,32 @@
+site_name: Aikāgrya Research
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+plugins:
+  - search
+  - bibtex:
+      bib_file: refs/bibliography.bib
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+nav:
+  - Home: index.md
+  - Research Plan: research_plan.md
+  - Methodology: methodology.md
+  - Frameworks:
+      - IIT / Φ: frameworks/IIT_phi.md
+      - Category Theory: frameworks/category_theory.md
+      - Thermodynamics: frameworks/thermodynamics.md
+      - Dynamical Systems: frameworks/dynamical_systems.md
+  - Adversarial:
+      - Stress Tests: adversarial/phi-formalizer-stress-test.md
+      - Threat Models: adversarial/threat_models.md
+  - References:
+      - Reading Lists: reading_lists.md
