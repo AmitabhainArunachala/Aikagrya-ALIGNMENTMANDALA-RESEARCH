@@ -1,0 +1,20 @@
+[project]
+name = "aikagrya"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+  "mkdocs-material",
+  "mkdocs-bibtex",
+  "pymdown-extensions",
+  "numpy",
+  "networkx",
+  "pytest",
+  "black",
+  "ruff"
+]
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
