@@ -284,6 +284,9 @@ def main(seed=0):
         }
         
         print(f"✅ Hysteresis computed: irreversibility_score = {irreversibility_score:.6f}")
+        # Log grep-able metric for CI logs and dashboards
+        Kmin, Kmax = K_range[0], K_range[-1]
+        print(f"METRIC hysteresis_area={irreversibility_score:.6f} K_range=[{Kmin:.3f},{Kmax:.3f}]")
         
     except Exception as e:
         print(f"⚠️  Hysteresis computation failed: {e}")

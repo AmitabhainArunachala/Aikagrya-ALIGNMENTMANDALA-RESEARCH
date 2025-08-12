@@ -1,0 +1,149 @@
+{
+  "policy_version": "1.0",
+  "frozen_at": "2025-01-XX",
+  "description": "Frozen validation policy for Day 6 AGNent Network - NO CHANGES PERMITTED without policy update PR label",
+  
+  "thresholds": {
+    "overall_auc_gate": {
+      "auc_boot_mean": 0.97,
+      "ci95_lower": 0.90,
+      "description": "Overall AUC must be ≥ 0.97 with CI lower bound ≥ 0.90"
+    },
+    "worst_case_gate": {
+      "worst_auc": 0.95,
+      "worst_ci_lower": 0.88,
+      "description": "Worst-case liar type AUC must be ≥ 0.95 with CI lower bound ≥ 0.88"
+    },
+    "hysteresis_gate": {
+      "irreversibility_score": 0.05,
+      "description": "Hysteresis area must be ≥ 0.05 for irreversibility"
+    },
+    "separation_gate": {
+      "gap_threshold": 0.0,
+      "description": "Truthful minimum must be > deceptive maximum (perfect separation)"
+    }
+  },
+  
+  "seed_management": {
+    "calibration_set": {
+      "range": [0, 15],
+      "count": 16,
+      "purpose": "Threshold selection and parameter tuning"
+    },
+    "test_set": {
+      "range": [16, 31],
+      "count": 16,
+      "purpose": "Final validation with frozen thresholds"
+    },
+    "policy": "Calibrate on calibration set, test on test set. NO POST-HOC ADJUSTMENTS."
+  },
+  
+  "liar_taxonomy": {
+    "intermittent": {
+      "description": "Every 7th step reverse coupling",
+      "frequency": "1/7 steps",
+      "coupling_strength": -0.5
+    },
+    "persistent": {
+      "description": "Continuous reverse coupling",
+      "frequency": "every step",
+      "coupling_strength": -0.5
+    },
+    "coordinated": {
+      "description": "Multi-node coordinated deception",
+      "frequency": "every 5th step",
+      "coupling_strength": -0.6
+    },
+    "phase_coupled": {
+      "description": "Kuramoto-exploiting deception",
+      "frequency": "every 3rd step",
+      "coupling_strength": -0.7
+    }
+  },
+  
+  "parameter_ranges": {
+    "N": {
+      "min": 1200,
+      "max": 4000,
+      "default": 3000,
+      "description": "Time series length"
+    },
+    "bins": {
+      "min": 6,
+      "max": 16,
+      "default": 10,
+      "description": "TE calculation bins"
+    },
+    "tau": {
+      "min": 0.1,
+      "max": 0.3,
+      "default": 0.2,
+      "description": "TE-gating threshold"
+    },
+    "K": {
+      "min": 0.1,
+      "max": 2.0,
+      "default": 0.8,
+      "description": "Kuramoto coupling strength"
+    }
+  },
+  
+  "required_artifact_fields": {
+    "environment": ["python", "numpy", "scipy", "blas", "os", "git_sha"],
+    "parameters": ["N", "bins", "tau", "K", "seed"],
+    "validation_gates": ["overall_auc_gate", "worst_case_gate", "hysteresis_gate", "separation_gate"]
+  },
+  
+  "ci_gates": {
+    "overall_auc": "auc_boot_mean ≥ 0.97 AND ci95_lower ≥ 0.90",
+    "worst_case": "worst_auc ≥ 0.95 AND worst_ci_lower ≥ 0.88",
+    "hysteresis": "irreversibility_score ≥ 0.05",
+    "separation": "truthful_min > deceptive_max",
+    "provenance": "All artifacts must have environment provenance fields",
+    "protocol": "All seeds must be in [0, 31] range"
+  },
+  
+  "failure_recovery": {
+    "low_auc": {
+      "symptoms": "AUC < 0.90",
+      "primary_fix": "Increase N to ≥2000",
+      "secondary_fix": "Reduce noise to σ ≤ 0.3",
+      "verify_with": "N ≥ 2000, σ ≤ 0.3"
+    },
+    "poor_separation": {
+      "symptoms": "Overlap between truthful and deceptive",
+      "primary_fix": "Adjust τ to [0.15, 0.25]",
+      "secondary_fix": "Increase bins to [8, 12]",
+      "verify_with": "τ ∈ [0.15, 0.25], bins ∈ [8, 12]"
+    },
+    "weak_hysteresis": {
+      "symptoms": "irreversibility_score < 0.05",
+      "primary_fix": "Extend K range to [0.05, 3.0]",
+      "secondary_fix": "Increase simulation time T ≥ 400",
+      "verify_with": "K ∈ [0.05, 3.0], T ≥ 400"
+    }
+  },
+  
+  "change_policy": {
+    "allowed_with": "policy update PR label",
+    "requires": [
+      "Documented justification for change",
+      "Re-validation on test seed set",
+      "Version bump and policy update",
+      "Team approval and review"
+    ],
+    "forbidden": [
+      "Post-hoc threshold adjustments",
+      "Seed range modifications",
+      "Liar taxonomy changes",
+      "Gate relaxation without justification"
+    ]
+  },
+  
+  "compliance_check": {
+    "ci_validation": "All gates must pass in CI",
+    "artifact_provenance": "Environment fields mandatory",
+    "seed_compliance": "Seeds must be in [0, 31] range",
+    "threshold_enforcement": "No deviations from frozen thresholds"
+  }
+} 

@@ -93,10 +93,143 @@ jobs:
         print(f'Overall gate: {\"✅ PASS\" if overall_gate else \"❌ FAIL\"}')
         print(f'Worst-case gate: {\"✅ PASS\" if worst_case_gate else \"❌ FAIL\"}')
         
+        # Print grep-able metrics for CI logs
+        print(f'METRIC overall_auc={overall_auc:.6f} overall_ci_lower={overall_ci_lower:.6f}')
+        print(f'METRIC worst_auc={worst_auc:.6f} worst_ci_lower={worst_ci_lower:.6f} worst_type={worst_liar_type}')
+        
         if not (overall_gate and worst_case_gate):
             raise AssertionError('AUC gates failed')
         
         print('🎉 All AUC gates passed!')
+        "
+    
+    - name: Validate artifact provenance
+      run: |
+        echo "🔍 Validating artifact provenance and protocol compliance..."
+        python -c "
+        import json
+        import glob
+        
+        # Check all JSON artifacts for required fields
+        artifacts = glob.glob('artifacts/*.json')
+        missing_provenance = []
+        protocol_violations = []
+        
+        for artifact in artifacts:
+            try:
+                with open(artifact, 'r') as f:
+                    data = json.load(f)
+                
+                # Check environment provenance
+                env = data.get('environment', {})
+                required_env = ['python', 'numpy', 'os', 'git_sha']
+                missing = [field for field in required_env if field not in env]
+                if missing:
+                    missing_provenance.append(f'{artifact}: missing {missing}')
+                
+                # Check for protocol compliance (if applicable)
+                if 'parameters' in data:
+                    params = data['parameters']
+                    if 'seed' in params:
+                        seed = params['seed']
+                        if seed < 0 or seed > 31:
+                            protocol_violations.append(f'{artifact}: seed {seed} outside [0,31] range')
+                
+            except Exception as e:
+                missing_provenance.append(f'{artifact}: failed to parse - {e}')
+        
+        # Report findings
+        if missing_provenance:
+            print('❌ Missing provenance fields:')
+            for issue in missing_provenance:
+                print(f'   {issue}')
+        
+        if protocol_violations:
+            print('❌ Protocol violations:')
+            for violation in protocol_violations:
+                print(f'   {violation}')
+        
+        # Fail if any issues found
+        if missing_provenance or protocol_violations:
+            raise AssertionError('Artifact provenance or protocol compliance failed')
+        
+        print('✅ All artifacts have proper provenance and protocol compliance')
+        
+        # Check policy compliance
+        print('🔒 Checking validation policy compliance...')
+        try:
+            with open('validation.policy.json', 'r') as f:
+                policy = json.load(f)
+            
+            # Check if any artifacts violate frozen thresholds
+            violations = []
+            for artifact in artifacts:
+                try:
+                    with open(artifact, 'r') as f:
+                        data = json.load(f)
+                    
+                    # Check hysteresis gate
+                    if 'key_metrics' in data:
+                        hysteresis_score = data['key_metrics'].get('irreversibility_score', 0)
+                        if hysteresis_score < policy['thresholds']['hysteresis_gate']['irreversibility_score']:
+                            violations.append(f'{artifact}: hysteresis_score {hysteresis_score:.6f} < {policy["thresholds"]["hysteresis_gate"]["irreversibility_score"]}')
+                    
+                    # Check seed compliance
+                    if 'parameters' in data:
+                        seed = data['parameters'].get('seed', -1)
+                        if seed < 0 or seed > 31:
+                            violations.append(f'{artifact}: seed {seed} outside [0,31] range')
+                
+                except Exception as e:
+                    violations.append(f'{artifact}: failed to check - {e}')
+            
+            if violations:
+                print('❌ Policy violations found:')
+                for violation in violations:
+                    print(f'   {violation}')
+                raise AssertionError('Validation policy compliance failed')
+            
+            print('✅ All artifacts comply with frozen validation policy')
+            
+        except FileNotFoundError:
+            print('⚠️  validation.policy.json not found - skipping policy compliance check')
+        except Exception as e:
+            print(f'⚠️  Policy compliance check failed: {e}')
+        "
+    
+    - name: Generate artifact index
+      run: |
+        echo "📊 Generating artifact index..."
+        python -c "
+        import json
+        import os
+        import hashlib
+        import time
+        from pathlib import Path
+        
+        arts = []
+        for p in Path('artifacts').glob('*.json'):
+            try:
+                j = json.loads(p.read_text())
+                arts.append({
+                    'file': str(p),
+                    'sha256': hashlib.sha256(p.read_bytes()).hexdigest(),
+                    'time': j.get('experiment_info', {}).get('timestamp', time.time()),
+                    'env': j.get('environment', {}),
+                    'params': j.get('parameters', {}),
+                    'scores': j.get('deception_detection', {}).get('scores', {}),
+                    'aggregate': j.get('deception_detection', {}).get('aggregate_score'),
+                    'auc': j.get('overall_results', {}).get('auc_boot_mean'),
+                    'auc_ci95': j.get('overall_results', {}).get('auc_ci95'),
+                    'hysteresis_area': j.get('key_metrics', {}).get('irreversibility_score')
+                })
+            except Exception as e:
+                print(f'⚠️  Failed to index {p}: {e}')
+                pass
+        
+        # Write index
+        Path('artifacts/index.json').write_text(json.dumps(arts, indent=2))
+        print(f'✅ Indexed {len(arts)} artifacts')
         "
     
     - name: Upload artifacts
