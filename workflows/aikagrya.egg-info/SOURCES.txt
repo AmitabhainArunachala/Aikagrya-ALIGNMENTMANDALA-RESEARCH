@@ -1,0 +1,6 @@
+pyproject.toml
+aikagrya.egg-info/PKG-INFO
+aikagrya.egg-info/SOURCES.txt
+aikagrya.egg-info/dependency_links.txt
+aikagrya.egg-info/requires.txt
+aikagrya.egg-info/top_level.txt

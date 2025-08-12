@@ -1,0 +1,8 @@
+mkdocs-material
+mkdocs-bibtex
+pymdown-extensions
+numpy
+networkx
+pytest
+black
+ruff

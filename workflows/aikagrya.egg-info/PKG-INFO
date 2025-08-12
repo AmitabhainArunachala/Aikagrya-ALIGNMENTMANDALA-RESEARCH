@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: aikagrya
+Version: 0.1.0
+Requires-Python: >=3.10
+Requires-Dist: mkdocs-material
+Requires-Dist: mkdocs-bibtex
+Requires-Dist: pymdown-extensions
+Requires-Dist: numpy
+Requires-Dist: networkx
+Requires-Dist: pytest
+Requires-Dist: black
+Requires-Dist: ruff
