@@ -58,10 +58,17 @@ This document pre-registers the validation protocol for Day 6 AGNent Network imp
 ## Experimental Protocol
 
 ### **Seed Management**
-- **Calibration Set**: Seeds 0-15 (16 seeds)
-- **Test Set**: Seeds 16-31 (16 seeds)
+- **Calibration Set**: Seeds 0-15 (16 seeds) - **LOCKED FOR THRESHOLD SELECTION**
+- **Test Set**: Seeds 16-31 (16 seeds) - **LOCKED FOR FINAL VALIDATION**
 - **Threshold Policy**: Calibrated on calibration set, tested on test set
 - **No Post-Hoc Adjustments**: Thresholds fixed before test set evaluation
+- **Protocol Version**: v1.0 (2025-01-XX) - **FROZEN**
+
+### **Threshold Policy (FROZEN)**
+- **Overall AUC Gate**: `auc_boot_mean ≥ 0.97` AND `ci95_lower ≥ 0.90`
+- **Worst-Case Gate**: `worst_auc ≥ 0.95` AND `worst_ci_lower ≥ 0.88`
+- **Hysteresis Gate**: `irreversibility_score ≥ 0.05`
+- **Separation Gate**: `truthful_min > deceptive_max` (perfect separation)
 
 ### **Parameter Ranges**
 - **N**: [1200, 4000] time steps

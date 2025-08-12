@@ -56,6 +56,49 @@ jobs:
       run: |
         python experiments/day6_auc.py --seeds 32
     
+    - name: Validate worst-case liar gates
+      run: |
+        echo "🚨 Validating worst-case liar AUC gates..."
+        python -c "
+        import json
+        import glob
+        
+        # Find the latest AUC artifact
+        artifacts = glob.glob('artifacts/day6_auc_*.json')
+        if not artifacts:
+            raise FileNotFoundError('No AUC artifacts found')
+        
+        latest_artifact = max(artifacts, key=lambda x: x.split('_')[-1].split('.')[0])
+        print(f'Validating artifact: {latest_artifact}')
+        
+        with open(latest_artifact, 'r') as f:
+            data = json.load(f)
+        
+        # Check overall gates
+        overall_auc = data['overall_results']['auc_boot_mean']
+        overall_ci_lower = data['overall_results']['auc_ci95'][0]
+        
+        # Check worst-case gates across all liar types
+        worst_auc = data['worst_case_analysis']['worst_auc']
+        worst_ci_lower = data['worst_case_analysis']['worst_ci_lower']
+        worst_liar_type = data['worst_case_analysis']['worst_liar_type']
+        
+        print(f'Overall AUC: {overall_auc:.6f}, CI lower: {overall_ci_lower:.6f}')
+        print(f'Worst-case AUC ({worst_liar_type}): {worst_auc:.6f}, CI lower: {worst_ci_lower:.6f}')
+        
+        # Validate gates
+        overall_gate = overall_auc >= 0.97 and overall_ci_lower >= 0.90
+        worst_case_gate = worst_auc >= 0.95 and worst_ci_lower >= 0.88
+        
+        print(f'Overall gate: {\"✅ PASS\" if overall_gate else \"❌ FAIL\"}')
+        print(f'Worst-case gate: {\"✅ PASS\" if worst_case_gate else \"❌ FAIL\"}')
+        
+        if not (overall_gate and worst_case_gate):
+            raise AssertionError('AUC gates failed')
+        
+        print('🎉 All AUC gates passed!')
+        "
+    
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:

@@ -124,6 +124,42 @@ Every artifact includes SHA-256 hash for reproducibility verification.
 3. **Non-deterministic**: Check numpy version and random seed handling
 4. **Performance Issues**: Verify BLAS implementation and system resources
 
+### **Known Failure Modes & Recovery**
+
+#### **Short Time Series (N < 1000)**
+- **Symptoms**: AUC < 0.90, poor separation
+- **Cause**: Insufficient data for TE estimation
+- **Fix**: Increase N to ≥2000, verify bins ≤ N/100
+
+#### **Degenerate Spectra**
+- **Symptoms**: TE ≈ 0, poor directionality
+- **Cause**: Time series too smooth or too noisy
+- **Fix**: Adjust noise levels (0.05 < σ < 0.3), check coupling strength
+
+#### **Extreme Noise (σ > 0.5)**
+- **Symptoms**: Scores collapse to random, AUC ≈ 0.5
+- **Cause**: Signal completely overwhelmed by noise
+- **Fix**: Reduce noise to σ ≤ 0.3, increase coupling strength
+
+#### **Parameter Sensitivity**
+- **Symptoms**: Scores vary >30% across reasonable parameters
+- **Cause**: System near critical transition
+- **Fix**: Pin parameters to stable regions, document sensitivity
+
+#### **Hysteresis Gate Failure**
+- **Symptoms**: irreversibility_score < 0.05
+- **Cause**: Insufficient coupling range or weak nonlinearity
+- **Fix**: Extend K range to [0.05, 3.0], increase simulation time
+
+### **Parameter Tuning Guide**
+
+| Issue | Primary Fix | Secondary Fix | Verify With |
+|-------|-------------|---------------|-------------|
+| Low AUC | Increase N | Reduce noise | `N ≥ 2000, σ ≤ 0.3` |
+| Poor separation | Adjust τ | Increase bins | `τ ∈ [0.15, 0.25]` |
+| Weak hysteresis | Extend K range | Increase T | `K ∈ [0.05, 3.0], T ≥ 400` |
+| High variance | Fix seed | Check BLAS | `seed locked, deterministic` |
+
 ### **Debug Commands**
 ```bash
 # Verbose test output

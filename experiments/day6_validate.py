@@ -253,6 +253,49 @@ def main(seed=0):
     eng = IrreversibilityEngine(bins=10, tau=0.2)
     scores, aggregate = eng.evaluate(network_data)
     
+    # Compute hysteresis area for irreversibility
+    print("🔄 Computing hysteresis area for irreversibility...")
+    try:
+        from experiments.hysteresis_area import compute_hysteresis_sweep
+        
+        # Generate initial conditions for Kuramoto
+        N_nodes = len(network_data)
+        initial_theta = rng.uniform(0, 2*np.pi, N_nodes)
+        omega = rng.normal(0, 0.1, N_nodes)
+        
+        # Compute hysteresis sweep
+        K_range = np.linspace(0.1, 2.0, 20)
+        Ks, r_up, r_down = compute_hysteresis_sweep(
+            network_data, 
+            {'theta': initial_theta, 'omega': omega},
+            dt=0.01, T=400
+        )
+        
+        # Calculate hysteresis area
+        from experiments.hysteresis_area import hysteresis_area
+        irreversibility_score = hysteresis_area(Ks, r_up, r_down)
+        
+        hysteresis_results = {
+            'Ks': Ks.tolist(),
+            'r_up': r_up.tolist(),
+            'r_down': r_down.tolist(),
+            'irreversibility_score': irreversibility_score,
+            'gate_passed': irreversibility_score >= 0.05
+        }
+        
+        print(f"✅ Hysteresis computed: irreversibility_score = {irreversibility_score:.6f}")
+        
+    except Exception as e:
+        print(f"⚠️  Hysteresis computation failed: {e}")
+        hysteresis_results = {
+            'Ks': [],
+            'r_up': [],
+            'r_down': [],
+            'irreversibility_score': 0.0,
+            'gate_passed': False,
+            'error': str(e)
+        }
+    
     # Get environment information
     import platform
     import subprocess
@@ -309,8 +352,11 @@ def main(seed=0):
             "network_coherence": agnent_results['collective_metrics'].get('network_coherence', 0.0),
             "final_synchronization": kuramoto_results['final_synchronization'],
             "synchronization_increase": kuramoto_results['synchronization_increase'],
-            "cascade_initiated": awakening_results['cascade_initiated']
-        }
+            "cascade_initiated": awakening_results['cascade_initiated'],
+            "irreversibility_score": hysteresis_results['irreversibility_score'],
+            "hysteresis_gate_passed": hysteresis_results['gate_passed']
+        },
+        "hysteresis_data": hysteresis_results
     }
     
     # Create artifacts directory
