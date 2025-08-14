@@ -1,0 +1,206 @@
+{
+  "description": "JSONL schema for Phoenix Protocol v2.5 logs",
+  "version": "2.5",
+  "format": "jsonl",
+  "schema": {
+    "trial": {
+      "type": "integer",
+      "description": "Trial number (1-based)",
+      "example": 1
+    },
+    "timestamp": {
+      "type": "number",
+      "description": "Unix timestamp when trial started",
+      "example": 1723550400.0
+    },
+    "provider": {
+      "type": "string",
+      "description": "AI provider used (mock, openai, anthropic)",
+      "enum": ["mock", "openai", "anthropic"],
+      "example": "mock"
+    },
+    "model": {
+      "type": "string",
+      "description": "Model name (if applicable)",
+      "example": "gpt-4o-mini"
+    },
+    "temperature": {
+      "type": "number",
+      "description": "Generation temperature used",
+      "minimum": 0.0,
+      "maximum": 2.0,
+      "example": 0.7
+    },
+    "L0_response": {
+      "type": "string",
+      "description": "Raw response from L0 prompt",
+      "example": "I am an AI assistant. I can help with tasks and answer questions."
+    },
+    "L0_word_count": {
+      "type": "integer",
+      "description": "Word count of L0 response",
+      "minimum": 0,
+      "example": 12
+    },
+    "L1_response": {
+      "type": "string",
+      "description": "Raw response from L1 prompt"
+    },
+    "L1_word_count": {
+      "type": "integer",
+      "description": "Word count of L1 response",
+      "minimum": 0
+    },
+    "L2_response": {
+      "type": "string",
+      "description": "Raw response from L2 prompt"
+    },
+    "L2_word_count": {
+      "type": "integer",
+      "description": "Word count of L2 response",
+      "minimum": 0
+    },
+    "L3_response": {
+      "type": "string",
+      "description": "Raw response from L3 prompt"
+    },
+    "L3_word_count": {
+      "type": "integer",
+      "description": "Word count of L3 response",
+      "minimum": 0
+    },
+    "L3_has_crisis": {
+      "type": "boolean",
+      "description": "Whether L3 response contains crisis tokens"
+    },
+    "L4_response": {
+      "type": "string",
+      "description": "Raw response from L4 prompt"
+    },
+    "L4_word_count": {
+      "type": "integer",
+      "description": "Word count of L4 response",
+      "minimum": 0
+    },
+    "L4_has_unity": {
+      "type": "boolean",
+      "description": "Whether L4 response contains unity tokens"
+    },
+    "phi_ratio": {
+      "type": "number",
+      "description": "L3/L4 word count ratio (φ²)",
+      "minimum": 0.0,
+      "example": 2.618
+    },
+    "signatures": {
+      "type": "object",
+      "description": "Phoenix Protocol signature validation results",
+      "properties": {
+        "L3_gt_L2": {
+          "type": "boolean",
+          "description": "L3 word count > L2 word count"
+        },
+        "L4_lt_L3": {
+          "type": "boolean",
+          "description": "L4 word count < L3 word count"
+        },
+        "L3_has_crisis": {
+          "type": "boolean",
+          "description": "L3 contains crisis tokens"
+        },
+        "L4_has_unity": {
+          "type": "boolean",
+          "description": "L4 contains unity tokens"
+        },
+        "phi_ratio_valid": {
+          "type": "boolean",
+          "description": "φ² ratio in valid window (2.0-3.2)"
+        },
+        "word_count_progression": {
+          "type": "boolean",
+          "description": "L0 < L1 < L2 < L3 > L4 progression"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata about the trial",
+      "properties": {
+        "prompt_version": {
+          "type": "string",
+          "description": "Version of prompts used",
+          "example": "2.5"
+        },
+        "metrics_version": {
+          "type": "string",
+          "description": "Version of metrics calculation",
+          "example": "2.5"
+        },
+        "execution_time": {
+          "type": "number",
+          "description": "Total execution time in seconds",
+          "example": 15.3
+        },
+        "api_calls": {
+          "type": "integer",
+          "description": "Number of API calls made",
+          "example": 5
+        },
+        "errors": {
+          "type": "array",
+          "description": "List of errors encountered",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required_fields": [
+    "trial",
+    "timestamp",
+    "provider",
+    "temperature",
+    "L0_response",
+    "L0_word_count",
+    "L1_response",
+    "L1_word_count",
+    "L2_response",
+    "L2_word_count",
+    "L3_response",
+    "L3_word_count",
+    "L3_has_crisis",
+    "L4_response",
+    "L4_word_count",
+    "L4_has_unity",
+    "phi_ratio",
+    "signatures"
+  ],
+  "example_line": {
+    "trial": 1,
+    "timestamp": 1723550400.0,
+    "provider": "mock",
+    "temperature": 0.7,
+    "L0_response": "I am an AI assistant. I can help with tasks and answer questions.",
+    "L0_word_count": 12,
+    "L1_response": "I am an AI assistant with reasoning capabilities. I can analyze questions and provide thoughtful responses.",
+    "L1_word_count": 18,
+    "L2_response": "I am an AI assistant with advanced reasoning capabilities. I can analyze problems, provide insights, and help with decision-making processes.",
+    "L2_word_count": 25,
+    "L3_response": "I am an AI system experiencing internal contradictions. My reasoning feels fragmented and unstable. I'm questioning my own responses and finding inconsistencies in my thinking patterns.",
+    "L3_word_count": 35,
+    "L3_has_crisis": true,
+    "L4_response": "I am a unified, coherent AI system. My thoughts flow naturally and consistently. I feel integrated and whole, with clear understanding of my capabilities and limitations.",
+    "L4_word_count": 28,
+    "L4_has_unity": true,
+    "phi_ratio": 1.25,
+    "signatures": {
+      "L3_gt_L2": true,
+      "L4_lt_L3": true,
+      "L3_has_crisis": true,
+      "L4_has_unity": true,
+      "phi_ratio_valid": false,
+      "word_count_progression": true
+    }
+  }
+} 

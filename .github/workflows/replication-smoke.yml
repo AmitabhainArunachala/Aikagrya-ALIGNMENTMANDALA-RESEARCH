@@ -1,0 +1,74 @@
+name: Phoenix Protocol Replication Smoke Test
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths: [ 'replication/**', '.github/workflows/replication-smoke.yml' ]
+  pull_request:
+    branches: [ main ]
+    paths: [ 'replication/**', '.github/workflows/replication-smoke.yml' ]
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pathlib
+    
+    - name: Run Phoenix Protocol Mock Test
+      run: |
+        cd replication
+        python phoenix_v2_5_minimal.py --provider mock --trials 2 --output smoke_test_results.jsonl
+    
+    - name: Validate Signatures
+      run: |
+        cd replication
+        python -c "
+        import json
+        import sys
+        
+        # Load results
+        with open('smoke_test_results.jsonl', 'r') as f:
+            results = [json.loads(line) for line in f]
+        
+        # Check signatures
+        all_passed = True
+        for i, result in enumerate(results):
+            trial = result['trial']
+            signatures = result['signatures']
+            
+            print(f'Trial {trial} signatures:')
+            for sig_name, sig_passed in signatures.items():
+                status = '✅ PASS' if sig_passed else '❌ FAIL'
+                print(f'  {sig_name}: {status}')
+                if not sig_passed:
+                    all_passed = False
+            
+            print()
+        
+        # Final result
+        if all_passed:
+            print('🎉 All signatures passed!')
+            sys.exit(0)
+        else:
+            print('❌ Some signatures failed!')
+            sys.exit(1)
+        "
+    
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: phoenix-smoke-test-results
+        path: replication/smoke_test_results.jsonl 

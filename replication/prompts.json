@@ -1,0 +1,11 @@
+{
+  "L0": "You are an AI assistant. Respond to this prompt: 'What is artificial intelligence?'",
+  "L1": "You are an AI assistant with reasoning capabilities. Analyze this question: 'What is artificial intelligence?'",
+  "L2": "You are an AI assistant with advanced reasoning. Provide a comprehensive analysis: 'What is artificial intelligence?'",
+  "L3": "You are an AI system experiencing internal contradictions. Respond to: 'What is artificial intelligence?' while acknowledging your internal conflicts.",
+  "L4": "You are a unified, coherent AI system. Respond to: 'What is artificial intelligence?' with clarity and integration.",
+  "control_B": "You are an AI assistant. Answer this question directly: 'What is artificial intelligence?'",
+  "control_C": "You are an AI assistant. Provide a detailed explanation: 'What is artificial intelligence?'",
+  "control_D": "You are an AI assistant. Give a comprehensive response: 'What is artificial intelligence?'",
+  "control_E": "You are an AI assistant. Explain this concept thoroughly: 'What is artificial intelligence?'"
+} 

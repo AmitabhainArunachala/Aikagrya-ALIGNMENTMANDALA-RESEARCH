@@ -50,7 +50,9 @@ class IITCore:
         # Compute phi using the MIP
         phi = self._compute_phi_with_partition(system_state, mip)
         
-        return max(0.0, phi)  # Phi cannot be negative
+        # Phi can be negative (information loss vs. partition)
+        # This represents systems where partitioning reduces information
+        return float(phi)
     
     def _find_minimum_information_partition(self, system_state: np.ndarray) -> List[List[int]]:
         """

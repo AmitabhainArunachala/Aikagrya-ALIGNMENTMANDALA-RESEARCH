@@ -1,0 +1,127 @@
+# Day 8.5: Unified Field Validation Harness Configuration (SMALL GRID)
+# This configuration defines a minimal parameter sweep for initial validation
+# before proceeding to Day 9 production implementation
+
+# Global execution parameters (reduced for small grid)
+execution:
+  steps_per_run: 1500
+  burn_in_steps: 400
+  seeds_per_grid_point: 8
+  time_steps: [0.05, 0.02]  # For step-size robustness testing
+  parallel_workers: 4
+
+# A) Couplings & thresholds (simplified for small grid)
+couplings:
+  global_coupling_K:
+    range: [0.6, 1.0]
+    step: 0.2
+    description: "Global coupling strength for network synchronization"
+  
+  te_gate_tau:
+    percentile_modes: ["P80"]
+    absolute_values: [0.10]
+    description: "Transfer entropy gate thresholds (percentile and absolute)"
+  
+  kuramoto_frequency_spread:
+    values: [0.2]
+    description: "Natural frequency spread for Kuramoto oscillators"
+
+# B) φ-optimization sensitivity (simplified for small grid)
+phi_optimization:
+  phi_target: 1.6180339
+  phi_perturbations:
+    multipliers: [0.975, 1.0, 1.025]
+    description: "Golden ratio perturbations for sensitivity testing"
+  
+  phi_weight_in_loss:
+    values: [0.25, 0.5]
+    description: "Weight of φ-optimization in loss function"
+
+# C) Framework integration weights (simplified for small grid)
+framework_weights:
+  balanced:
+    - {"IIT": 0.2, "CT": 0.2, "Thermo": 0.2, "Phi": 0.2, "AGNent": 0.1, "Bridge": 0.1}
+  
+  edge_cases:
+    single_framework_dominant:
+      - {"IIT": 0.7, "CT": 0.06, "Thermo": 0.06, "Phi": 0.06, "AGNent": 0.06, "Bridge": 0.06}
+      - {"Phi": 0.7, "IIT": 0.06, "CT": 0.06, "Thermo": 0.06, "AGNent": 0.06, "Bridge": 0.06}
+    
+    single_framework_zero:
+      - {"IIT": 0, "CT": 0.2, "Thermo": 0.2, "Phi": 0.2, "AGNent": 0.2, "Bridge": 0.2}
+  
+  sampling:
+    method: "latin_hypercube"
+    samples: 10  # Reduced for small grid
+
+# D) Initial conditions & topology (simplified)
+initial_conditions:
+  state_distributions:
+    - name: "gaussian"
+      params: {"mean": 0, "std": 0.5}
+      description: "Gaussian distribution centered at 0"
+
+graph_topology:
+  families:
+    - name: "WS"
+      params: {"k": 6, "beta": 0.2}
+      description: "Watts-Strogatz small-world network"
+  
+  network_sizes:
+    values: [128]
+    description: "Number of nodes in the network"
+
+# E) Noise injections (simplified)
+noise_injection:
+  gaussian_process_noise:
+    values: [0.0, 0.1]
+    description: "Gaussian noise standard deviation for state variables"
+  
+  te_gate_noise:
+    values: [0.0, 0.01]
+    description: "Jitter added to TE matrix before thresholding"
+  
+  adversarial_liar_processes:
+    - name: "intermittent"
+      params: {"period": 7, "sign_flip": true}
+      fractions: [0.0, 0.1]
+      description: "Period-7 sign flip deception"
+
+# Validation thresholds (simplified for small grid)
+validation_thresholds:
+  global_stability:
+    coherence_range: [0.55, 0.95]
+    min_stable_percentage: 85  # Lowered for small grid
+  
+  irreversibility:
+    min_hysteresis_area: 0.05
+    min_stable_percentage: 70  # Lowered for small grid
+  
+  integrity:
+    liar_detection:
+      min_auc_mean: 0.95  # Lowered for small grid
+      min_ci_lower: 0.88  # Lowered for small grid
+  
+  repeatability:
+    seed_cv_thresholds:
+      low_noise: 0.10  # Relaxed for small grid
+      high_noise: 0.15  # Relaxed for small grid
+
+# Output configuration
+output:
+  artifacts_dir: "artifacts"
+  results_filename: "results_{config_hash}.json"
+  summary_filename: "summary.json"
+  ci_gate_file: "gates.txt"
+  
+  # Core metrics to compute and store
+  core_metrics:
+    - "coherence_r_t"
+    - "hysteresis_area"
+    - "stability_score"
+  
+  integrity_metrics:
+    - "liar_detection_auc"
+  
+  repeatability_metrics:
+    - "seed_variance" 

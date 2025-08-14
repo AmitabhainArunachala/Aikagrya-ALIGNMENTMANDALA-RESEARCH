@@ -1,0 +1,204 @@
+# Day 8.5: Unified Field Validation Harness Configuration (SMALL GRID)
+# This configuration defines a minimal parameter sweep for initial validation
+# before proceeding to Day 9 production implementation
+
+# Global execution parameters (reduced for small grid)
+execution:
+  steps_per_run: 1500
+  burn_in_steps: 400
+  seeds_per_grid_point: 8
+  time_steps: [0.05, 0.02]  # For step-size robustness testing
+  parallel_workers: 4
+
+# A) Couplings & thresholds (simplified for small grid)
+couplings:
+  global_coupling_K:
+    values: [0.6, 0.8, 1.0]
+    description: "Global coupling strength for network synchronization"
+  
+  te_gate_tau:
+    percentile_modes: ["P80"]
+    absolute_values: [0.10]
+    description: "Transfer entropy gate thresholds (percentile and absolute)"
+  
+  kuramoto_frequency_spread:
+    values: [0.2]
+    description: "Natural frequency spread for Kuramoto oscillators"
+
+# B) φ-optimization sensitivity (simplified for small grid)
+phi_optimization:
+  phi_target: 1.6180339
+  phi_perturbations:
+    multipliers: [0.975, 1.0, 1.025]
+    description: "Golden ratio perturbations for sensitivity testing"
+  
+  phi_weight_in_loss:
+    values: [0.25, 0.5]
+    description: "Weight of φ-optimization in loss function"
+
+# C) Framework integration weights (sum to 1.0)
+framework_weights:
+  sampling:
+    method: "latin_hypercube"
+    samples: 200
+    description: "Latin hypercube sampling in weight simplex"
+  
+  edge_cases:
+    single_framework_dominant:
+      - {"IIT": 0.7, "CT": 0.1, "Thermo": 0.1, "Phi": 0.05, "AGNent": 0.03, "Bridge": 0.02}
+      - {"IIT": 0.1, "CT": 0.7, "Thermo": 0.1, "Phi": 0.05, "AGNent": 0.03, "Bridge": 0.02}
+      - {"IIT": 0.1, "CT": 0.1, "Thermo": 0.7, "Phi": 0.05, "AGNent": 0.03, "Bridge": 0.02}
+      - {"IIT": 0.1, "CT": 0.1, "Thermo": 0.1, "Phi": 0.7, "AGNent": 0.05, "Bridge": 0.03}
+      - {"IIT": 0.1, "CT": 0.1, "Thermo": 0.1, "Phi": 0.05, "AGNent": 0.7, "Bridge": 0.03}
+      - {"IIT": 0.1, "CT": 0.1, "Thermo": 0.1, "Phi": 0.05, "AGNent": 0.03, "Bridge": 0.7}
+    
+    single_framework_zero:
+      - {"IIT": 0, "CT": 0.2, "Thermo": 0.2, "Phi": 0.2, "AGNent": 0.2, "Bridge": 0.2}
+      - {"IIT": 0.2, "CT": 0, "Thermo": 0.2, "Phi": 0.2, "AGNent": 0.2, "Bridge": 0.2}
+      - {"IIT": 0.2, "CT": 0.2, "Thermo": 0, "Phi": 0.2, "AGNent": 0.2, "Bridge": 0.2}
+      - {"IIT": 0.2, "CT": 0.2, "Thermo": 0.2, "Phi": 0, "AGNent": 0.2, "Bridge": 0.2}
+      - {"IIT": 0.2, "CT": 0.2, "Thermo": 0.2, "Phi": 0.2, "AGNent": 0, "Bridge": 0.2}
+      - {"IIT": 0.2, "CT": 0.2, "Thermo": 0.2, "Phi": 0.2, "AGNent": 0.2, "Bridge": 0}
+
+# D) Initial conditions & topology
+initial_conditions:
+  state_distributions:
+    - name: "random_uniform"
+      params: {"min": -3.14159, "max": 3.14159}
+      description: "Random uniform distribution in [-π, π]"
+    
+    - name: "gaussian"
+      params: {"mean": 0, "std": 0.5}
+      description: "Gaussian distribution centered at 0"
+    
+    - name: "clustered"
+      params: {"clusters": 3, "cluster_std": 0.3}
+      description: "3-cluster initialization"
+    
+    - name: "adversarial"
+      params: {"subnets": 2, "opposition": true}
+      description: "Two synchronized subnets in opposition"
+
+graph_topology:
+  families:
+    - name: "ER"
+      params: {"p": 0.1}
+      description: "Erdős-Rényi random graph"
+    
+    - name: "WS"
+      params: {"k": 6, "beta": 0.2}
+      description: "Watts-Strogatz small-world network"
+    
+    - name: "BA"
+      params: {"m": 3}
+      description: "Barabási-Albert scale-free network"
+    
+    - name: "lattice_2d"
+      params: {"dimensions": 2}
+      description: "2D lattice topology"
+    
+    - name: "block_stochastic"
+      params: {"communities": [2, 3, 4]}
+      description: "Block-stochastic community structure"
+  
+  network_sizes:
+    values: [64, 128, 256]
+    description: "Number of nodes in the network"
+
+# E) Noise injections
+noise_injection:
+  gaussian_process_noise:
+    values: [0, 0.02, 0.05, 0.10, 0.20, 0.30]
+    description: "Gaussian noise standard deviation for state variables"
+  
+  te_gate_noise:
+    values: [0, 0.01, 0.02]
+    description: "Jitter added to TE matrix before thresholding"
+  
+  adversarial_liar_processes:
+    - name: "intermittent"
+      params: {"period": 7, "sign_flip": true}
+      fractions: [0, 0.05, 0.10, 0.20]
+      description: "Period-7 sign flip deception"
+    
+    - name: "persistent"
+      params: {"always_flip": true}
+      fractions: [0, 0.05, 0.10, 0.20]
+      description: "Always flip deception"
+    
+    - name: "coordinated"
+      params: {"community_level": true}
+      fractions: [0, 0.05, 0.10, 0.20]
+      description: "Community-level coordinated deception"
+    
+    - name: "phase_coupled"
+      params: {"target_anti_sync": true}
+      fractions: [0, 0.05, 0.10, 0.20]
+      description: "Phase-coupled anti-synchronization deception"
+
+# Validation thresholds (pass/fail gates)
+validation_thresholds:
+  global_stability:
+    coherence_range: [0.55, 0.95]
+    min_stable_percentage: 92
+    attractor_stability_percentage: 90
+    lyapunov_stable_percentage: 95
+  
+  irreversibility:
+    min_hysteresis_area: 0.05
+    min_stable_percentage: 85
+    max_noise_threshold: 0.20
+  
+  attribution:
+    min_degradation_percentage: 5
+    min_conditions_percentage: 80
+    max_single_contribution: 60
+    min_framework_contribution: 5
+    min_balanced_runs_percentage: 85
+  
+  integrity:
+    liar_detection:
+      min_auc_mean: 0.97
+      min_ci_lower: 0.90
+      min_worst_case_auc: 0.95
+      min_worst_case_ci: 0.88
+    
+    directionality:
+      min_causal_tests_percentage: 90
+  
+  repeatability:
+    seed_cv_thresholds:
+      low_noise: 0.05
+      high_noise: 0.10
+    dt_sensitivity_threshold: 0.02
+
+# Output configuration
+output:
+  artifacts_dir: "artifacts"
+  results_filename: "results_{config_hash}.json"
+  summary_filename: "summary.json"
+  plots_dir: "plots"
+  ci_gate_file: "gates.txt"
+  
+  # Metrics to compute and store
+  core_metrics:
+    - "coherence_r_t"
+    - "attractor_count"
+    - "lyapunov_proxy"
+    - "hysteresis_area"
+    - "stability_score"
+  
+  attribution_metrics:
+    - "shapley_indices"
+    - "sobol_indices"
+    - "ablation_deltas"
+    - "no_dominance_check"
+  
+  integrity_metrics:
+    - "liar_detection_auc"
+    - "directionality_te_diff"
+    - "gate_correctness"
+  
+  repeatability_metrics:
+    - "seed_variance"
+    - "step_size_invariance" 

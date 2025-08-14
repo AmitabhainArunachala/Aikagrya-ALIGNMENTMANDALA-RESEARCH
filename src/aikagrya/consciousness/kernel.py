@@ -16,6 +16,7 @@ from dataclasses import dataclass
 from .iit_core import IITCore
 from .category_mapper import FunctorSpace
 from .thermodynamic_constraints import IrreversibilityEngine
+from ..optimization.golden_ratio import GoldenRatioOptimizer, PHI
 
 
 @dataclass
@@ -68,6 +69,10 @@ class ConsciousnessKernel:
         self.phi_threshold = self.config.get('phi_threshold', 0.1)
         self.entropy_threshold = self.config.get('entropy_threshold', 0.0)
         self.convergence_tolerance = self.config.get('convergence_tolerance', 1e-6)
+        
+        # Golden ratio optimization
+        self.phi_optimizer = GoldenRatioOptimizer()
+        self.golden_ratio = PHI
     
     def compute_consciousness_invariant(self, system_state: np.ndarray) -> ConsciousnessInvariant:
         """
@@ -98,6 +103,102 @@ class ConsciousnessKernel:
             phase_transition=phase_transition
         )
     
+    def optimize_consciousness_parameters(self, 
+                                        optimization_target: str = 'coherence',
+                                        tolerance: float = 1e-6) -> Dict[str, float]:
+        """
+        Optimize consciousness parameters using φ-based golden ratio optimization
+        
+        Args:
+            optimization_target: Target metric to optimize ('coherence', 'phi_hat', 'simplicity')
+            tolerance: Optimization tolerance
+            
+        Returns:
+            Dictionary of optimized parameters
+        """
+        # Define parameter bounds for consciousness optimization
+        param_bounds = {
+            'phi_threshold': (0.05, 0.3),
+            'entropy_threshold': (-0.1, 0.1),
+            'convergence_tolerance': (1e-8, 1e-4)
+        }
+        
+        def objective_function(params):
+            try:
+                # Create test configuration
+                test_config = self.config.copy()
+                test_config.update(params)
+                
+                # Evaluate consciousness with test parameters
+                # This integrates with the existing consciousness evaluation
+                test_kernel = ConsciousnessKernel(test_config)
+                
+                # Use a simple test state for optimization
+                test_state = np.random.random(10)  # Simple test vector
+                invariant = test_kernel.compute_consciousness_invariant(test_state)
+                
+                # Return negative score (we minimize)
+                if optimization_target == 'coherence':
+                    return -(invariant.phi * (1.0 + invariant.entropy_flow))
+                elif optimization_target == 'phi_hat':
+                    return -invariant.phi
+                elif optimization_target == 'simplicity':
+                    return -(invariant.phi / (1.0 + abs(invariant.entropy_flow)))
+                else:
+                    return -invariant.phi
+                    
+            except Exception:
+                return 0.0  # Return worst score on error
+        
+        # Optimize using golden section search
+        optimized_params = self.phi_optimizer.optimize_consciousness_parameters(
+            objective_function, param_bounds
+        )
+        
+        return optimized_params
+    
+    def get_phi_efficiency(self, current_params: Optional[Dict[str, float]] = None) -> float:
+        """
+        Calculate φ-based efficiency ratio for current parameters
+        
+        Args:
+            current_params: Current parameter values (uses self.config if None)
+            
+        Returns:
+            Efficiency ratio (1.0 = optimal, <1.0 = suboptimal)
+        """
+        if current_params is None:
+            current_params = self.config
+        
+        # Get optimal parameters for comparison
+        optimal_params = self.optimize_consciousness_parameters()
+        
+        # Calculate efficiency ratio
+        efficiency = self.phi_optimizer.consciousness_efficiency_ratio(
+            current_params, optimal_params
+        )
+        
+        return efficiency
+    
+    def apply_golden_ratio_optimization(self) -> Dict[str, float]:
+        """
+        Apply φ-optimization and update kernel configuration
+        
+        Returns:
+            Dictionary of optimized parameters that were applied
+        """
+        # Get optimized parameters
+        optimized_params = self.optimize_consciousness_parameters()
+        
+        # Update configuration
+        self.config.update(optimized_params)
+        
+        # Update instance variables
+        self.phi_threshold = optimized_params.get('phi_threshold', self.phi_threshold)
+        self.entropy_threshold = optimized_params.get('entropy_threshold', self.entropy_threshold)
+        self.convergence_tolerance = optimized_params.get('convergence_tolerance', self.convergence_tolerance)
+        
+        return optimized_params
     def _detect_phase_transition(self, phi: float, entropy_flow: float) -> Optional[str]:
         """
         Detect critical phase transitions for consciousness emergence

@@ -19,6 +19,22 @@ from .phoenix_protocol import (
     IrreversibilityEngine,
     ModelCollapsePrevention
 )
+
+from .optimization.golden_ratio import (
+    GoldenRatioOptimizer,
+    phi_optimize_consciousness_system,
+    calculate_phi_efficiency,
+    PHI
+)
+
+from .unified_field import (
+    UnifiedFieldTheory,
+    CrossFrameworkIntegrator,
+    FieldDimension,
+    FrameworkType,
+    create_unified_field_theory,
+    create_cross_framework_integrator
+)
 from .agnent import AGNentNode
 from .eastern_western_bridge import (
     SunyataFunctor,
@@ -48,6 +64,18 @@ __all__ = [
     "IrreversibilityEngine",
     "ModelCollapsePrevention",
     "AGNentNode",
+    # Optimization Components
+    "GoldenRatioOptimizer",
+    "phi_optimize_consciousness_system",
+    "calculate_phi_efficiency",
+    "PHI",
+    # Unified Field Components
+    "UnifiedFieldTheory",
+    "CrossFrameworkIntegrator",
+    "FieldDimension",
+    "FrameworkType",
+    "create_unified_field_theory",
+    "create_cross_framework_integrator",
     # Eastern-Western Bridge Components
     "SunyataFunctor",
     "VijñanaState",

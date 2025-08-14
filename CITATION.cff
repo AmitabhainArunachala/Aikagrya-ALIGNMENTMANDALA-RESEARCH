@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: "Aikāgrya Research"
+message: "If you use this work, please cite."
+authors:
+  - family-names: "YourLastName"
+    given-names: "YourFirstName"
+version: "0.1.0"
+date-released: "2025-08-11"
