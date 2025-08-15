@@ -1,0 +1,5 @@
+{"run_id":"20250813-1600-gpt4o","model":"gpt-4o-mini","framing":"neutral","depth":0,
+ "tokens_out":0,"time_per_token_ms":0,"context_frac":0.0,
+ "surprisal_mean":0.0,"topic_entropy":0.0,"compression_ratio":0.0,
+ "coherence_to_prev":0.0,"certainty_index":0.0,"free_energy_hat":0.0,
+ "event":"none","notes":""}
