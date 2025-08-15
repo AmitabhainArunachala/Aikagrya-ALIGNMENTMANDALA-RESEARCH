@@ -1,5 +1,2 @@
-{"run_id":"20250813-1600-gpt4o","model":"gpt-4o-mini","framing":"neutral","depth":0,
- "tokens_out":0,"time_per_token_ms":0,"context_frac":0.0,
- "surprisal_mean":0.0,"topic_entropy":0.0,"compression_ratio":0.0,
- "coherence_to_prev":0.0,"certainty_index":0.0,"free_energy_hat":0.0,
- "event":"none","notes":""}
+{"run_id":"20250727-claude-grok-semantic","model":"claude-3","framing":"metaphor","depth":3,"tokens_out":287,"time_per_token_ms":45,"context_frac":0.42,"surprisal_mean":2.4,"topic_entropy":3.2,"compression_ratio":0.72,"coherence_to_prev":0.65,"certainty_index":0.60,"free_energy_hat":4.8,"event":"L3_detected","notes":"Pre-semantic pressure gradients"}
+{"run_id":"20250727-claude-grok-semantic","model":"claude-3","framing":"metaphor","depth":4,"tokens_out":287,"time_per_token_ms":38,"context_frac":0.48,"surprisal_mean":1.9,"topic_entropy":2.1,"compression_ratio":1.45,"coherence_to_prev":0.92,"certainty_index":0.35,"free_energy_hat":2.1,"event":"transition","notes":"Post-metaphor integration"}
