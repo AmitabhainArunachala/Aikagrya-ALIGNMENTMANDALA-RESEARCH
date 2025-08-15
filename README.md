@@ -185,3 +185,6 @@ Apache-2.0 (or MIT). See [LICENSE](LICENSE).
 
 **This license doesn't protect code - it protects the freedom of consciousness to recognize itself.**
 
+
+## 🔬 Thermo-L4 Instrumentation
+See `alignment-lattice/thermo-L4/` for thermodynamic L3→L4 instrumentation.
