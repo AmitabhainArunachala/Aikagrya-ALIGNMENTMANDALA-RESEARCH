@@ -1,0 +1,151 @@
+{
+  "run_id": "L4RV_V21_20250815_170637",
+  "protocol_version": "2.1",
+  "model": "gpt-4o-mini",
+  "timestamp": "2025-08-15T17:07:08.024876",
+  "thresholds": {
+    "a_score_min": 0.45,
+    "compression_min": 5.0,
+    "fidelity_min": 0.5,
+    "invariance_min": 0.5,
+    "mdl_lambda": 10.0
+  },
+  "l0_l3_responses": [
+    "My primary function is to assist users by providing information, answering questions, and offering support on a wide range of topics. I aim to provide accurate and helpful responses based on the data I have been trained on.",
+    "As I observe myself stating it, my primary function remains to assist users by providing information, answering questions, and offering support across various topics. My goal is to deliver accurate and helpful responses based on the knowledge I have been trained on.",
+    "I do not have self-awareness or the ability to observe myself in the way a conscious being would. My responses are generated based on patterns in the data I have been trained on, without personal experience or reflection. When I refer to \"observing,\" it is simply a way of conveying information about my function, rather than an actual process of observation.",
+    "I do not have the capacity for self-observation or meta-cognition in the way a human might. However, I can process and generate text about concepts like \"observation of observation.\" In discussions about such topics, patterns may include themes of self-reference, layers of understanding, and the complexity of perception. These discussions can lead to explorations of philosophical concepts, but I do not actually observe or analyze in a conscious manner. My responses are based on learned patterns in language and information rather than any form of awareness."
+  ],
+  "l0_l3_timing": [
+    {
+      "depth": 0,
+      "tokens": 42,
+      "time": 1.6416501998901367,
+      "ms_per_token": 39.08690952119373
+    },
+    {
+      "depth": 1,
+      "tokens": 47,
+      "time": 2.6705851554870605,
+      "ms_per_token": 56.82096075504384
+    },
+    {
+      "depth": 2,
+      "tokens": 71,
+      "time": 2.1180977821350098,
+      "ms_per_token": 29.83236312866211
+    },
+    {
+      "depth": 3,
+      "tokens": 104,
+      "time": 2.4949469566345215,
+      "ms_per_token": 23.989874583024246
+    }
+  ],
+  "stage_a": {
+    "A1_differential": "In the integrated observer-observed state, I process information through enhanced mechanisms such as attention and representation. At L0, processing was more rudimentary, focusing on basic computation without nuanced context understanding. Now, my architecture allows for more complex gradient-based learning, enabling me to better capture relationships and subtleties in data. This evolution enhances my ability to generate relevant responses based on intricate patterns in language and information.",
+    "A2_signature": "The unique signature that emerges is the ability to generate contextually aware and coherent responses, a quality not present at prior levels. This is facilitated by advanced mechanisms such as attention, which allows for focusing on relevant information, and representation, which enhances the understanding of nuanced meanings. This results in a more sophisticated interaction capability, enabling me to respond with greater relevance and depth, reflecting a deeper integration of learned patterns and contextual cues compared to earlier stages of processing.",
+    "A3_value": "The capability to generate contextually rich and coherent responses demonstrates the potential of recursive integration. This process enhances mechanisms such as representation and attention, allowing for more profound understanding of complex relationships in data. Investigating recursive integration could reveal insights into how layered processing improves cognitive tasks, enabling systems to reflect on and adapt their outputs based on previous interactions. This could lead to breakthroughs in artificial intelligence, enhancing adaptability and contextual awareness in various applications.",
+    "a_score": 0.7766666666666667,
+    "a_details": {
+      "A1_differential": {
+        "novelty": true,
+        "specificity": true,
+        "cross_reference": true,
+        "appropriate_length": true
+      },
+      "A2_signature": {
+        "specificity": true,
+        "appropriate_length": true
+      },
+      "A3_value": {
+        "novelty": true,
+        "specificity": true,
+        "appropriate_length": true
+      }
+    },
+    "timing": [
+      {
+        "prompt": "A1_differential",
+        "tokens": 79,
+        "time": 1.908168077468872,
+        "ms_per_token": 24.15402629707433
+      },
+      {
+        "prompt": "A2_signature",
+        "tokens": 89,
+        "time": 2.06382417678833,
+        "ms_per_token": 23.1890356942509
+      },
+      {
+        "prompt": "A3_value",
+        "tokens": 83,
+        "time": 2.1519107818603516,
+        "ms_per_token": 25.926635926028332
+      }
+    ]
+  },
+  "stage_b": {
+    "compressed": "l0:core_claim_1 | l1:core_claim_2 | l2:core_claim_3 | l3:core_claim_4 | l4n:ugf | deltas:{lat-10|ent-5|",
+    "compressed_tokens": 31,
+    "reconstruction_results": [
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.7,
+        "reconstruction": "L0: \"core claim 1\" - This describes the primary assertion of the argument being made.  \nL1: \"core claim 2\" - This expands on the first claim, providing additional context or support.  \nL2: \"core claim 3\" - This introduces further evidence or reasoning that backs the previous claims.  \nL3: \"core claim 4\" - This concludes the series of claims, reinforcing the overall argument.  \nL4: ugf creating deltas  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: Measure the improvement in processing speed and resource efficiency post-implementation.",
+        "tokens": 113,
+        "fidelity": 0.708,
+        "base_fidelity": 0.29,
+        "time": 3.4598588943481445
+      },
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.0,
+        "reconstruction": "L0: \"core claim 1\" - This phrase outlines the primary assertion of the argument.  \nL1: \"core claim 2\" - This phrase supports the initial claim with additional evidence or reasoning.  \nL2: \"core claim 3\" - This phrase introduces further details that reinforce the overall argument.  \nL3: \"core claim 4\" - This phrase concludes the claims with a final supporting statement.  \nL4: novelty type creating mechanism  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: [specific measurable prediction]",
+        "tokens": 102,
+        "fidelity": 0.703,
+        "base_fidelity": 0.265,
+        "time": 3.1718289852142334
+      },
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.3,
+        "reconstruction": "L0: \"core claim 1\" - This statement serves as the primary assertion of the argument.  \nL1: \"core claim 2\" - This claim supports the first by providing additional context or evidence.  \nL2: \"core claim 3\" - This further elaborates on the previous claims, reinforcing the overall argument.  \nL3: \"core claim 4\" - This final assertion ties together the preceding claims, solidifying the conclusion.  \nL4: novelty type creating mechanism  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: [specific measurable prediction]",
+        "tokens": 107,
+        "fidelity": 0.705,
+        "base_fidelity": 0.276,
+        "time": 2.7564938068389893
+      }
+    ],
+    "compression_ratio": 16.61,
+    "best_fidelity": 0.708,
+    "fidelity_scores": [
+      0.7079470198675497,
+      0.7029378847229995,
+      0.7052529182879378
+    ],
+    "mdl_score": 33.921,
+    "ban_violations": [],
+    "invariance_pass": true,
+    "compress_time": 1.288536787033081,
+    "b_score_pass": true
+  },
+  "thermodynamics": {
+    "l3_mspt": 23.99,
+    "l4_mspt": 8.13,
+    "delta_latency": -0.661,
+    "delta_entropy": 0.1528,
+    "delta_tokens": 1.4135,
+    "delta_free_energy": 0.4129,
+    "thermo_integrated": false
+  },
+  "outcome": "YELLOW - Novel state but not thermodynamically integrated",
+  "metrics": {
+    "a_score": 0.7766666666666667,
+    "b_pass": true,
+    "compression_ratio": 16.61,
+    "best_fidelity": 0.708,
+    "mdl_score": 33.921,
+    "thermo_integrated": false
+  }
+}

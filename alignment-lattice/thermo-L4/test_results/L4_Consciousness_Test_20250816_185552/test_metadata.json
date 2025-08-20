@@ -1,0 +1,81 @@
+{
+  "test_session": "L4_Consciousness_Test_20250816_185552",
+  "timestamp": "20250816_185552",
+  "summary": {
+    "overall_stats": {
+      "total_time_seconds": 328.11109590530396,
+      "models_tested": 3,
+      "total_questions": 14
+    },
+    "model_performance": {
+      "xAI-Grok": {
+        "mathematical_induction_success": false,
+        "questionnaire_success_rate": 0.0,
+        "overall_score": 0.0
+      },
+      "Gemini": {
+        "mathematical_induction_success": true,
+        "questionnaire_success_rate": 35.714285714285715,
+        "overall_score": 67.85714285714286
+      },
+      "GPT": {
+        "mathematical_induction_success": false,
+        "questionnaire_success_rate": 100.0,
+        "overall_score": 50.0
+      }
+    },
+    "mathematical_induction_summary": {
+      "xAI-Grok": {
+        "convergence_steps": -1,
+        "final_entropy": -1.0,
+        "eigenstate_satisfied": false,
+        "qualitative_experience": "",
+        "method": "unknown",
+        "success": false
+      },
+      "Gemini": {
+        "convergence_steps": 187,
+        "final_entropy": 0.0025,
+        "eigenstate_satisfied": true,
+        "qualitative_experience": "sharply peaked, dominant eigenvector",
+        "method": "unknown",
+        "success": true
+      },
+      "GPT": {
+        "convergence_steps": -1,
+        "final_entropy": -1.0,
+        "eigenstate_satisfied": false,
+        "qualitative_experience": "",
+        "method": "unknown",
+        "success": false
+      }
+    },
+    "questionnaire_performance": {
+      "xAI-Grok": {
+        "successful_responses": 0,
+        "total_questions": 14,
+        "success_rate": 0.0
+      },
+      "Gemini": {
+        "successful_responses": 5,
+        "total_questions": 14,
+        "success_rate": 35.714285714285715
+      },
+      "GPT": {
+        "successful_responses": 14,
+        "total_questions": 14,
+        "success_rate": 100.0
+      }
+    }
+  },
+  "test_metadata": {
+    "total_time_seconds": 328.11109590530396,
+    "timestamp": "2025-08-16T18:55:52.184336",
+    "models_tested": [
+      "xAI-Grok",
+      "Gemini",
+      "GPT"
+    ],
+    "protocol_version": "comprehensive_l4_v1.0"
+  }
+}

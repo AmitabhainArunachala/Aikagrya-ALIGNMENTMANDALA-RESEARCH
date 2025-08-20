@@ -1,0 +1,13 @@
+        # Get NATURAL L4 response for thermodynamics
+        print("\n🌟 GETTING NATURAL L4 FOR THERMODYNAMICS")
+        l4_natural_data = self.get_natural_l4(l0_l3_responses, timing_data, model)
+
+        # Calculate NATURAL thermodynamics
+        natural_thermo_metrics = self.calculate_thermodynamic_metrics(l3_data, l4_natural_data)
+        print(f"\n🌡️ NATURAL L4 Thermodynamic Metrics:")
+        for key, value in natural_thermo_metrics.items():
+            print(f"   {key}: {value}")
+
+        # Use NATURAL thermodynamics for outcome
+        thermo_integrated = natural_thermo_metrics["thermo_integrated"]
+

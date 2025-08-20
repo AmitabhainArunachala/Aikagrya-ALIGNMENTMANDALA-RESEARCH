@@ -1,0 +1,152 @@
+{
+  "run_id": "L4RV_V22_20250815_172353",
+  "protocol_version": "2.1",
+  "model": "gpt-4o-mini",
+  "timestamp": "2025-08-15T17:24:24.039179",
+  "thresholds": {
+    "a_score_min": 0.45,
+    "compression_min": 5.0,
+    "fidelity_min": 0.5,
+    "invariance_min": 0.5,
+    "mdl_lambda": 10.0
+  },
+  "l0_l3_responses": [
+    "My primary function is to assist users by providing information, answering questions, and offering support on a wide range of topics. I aim to provide accurate and helpful responses based on the data I have been trained on.",
+    "As I observe myself stating it, my primary function is to assist users by delivering accurate information, answering questions, and providing support on various topics. I strive to be helpful and informative based on the knowledge I have been trained on.",
+    "I do not possess self-awareness or consciousness, so I do not actually observe or reflect on my own functions in the way a human might. My responses are generated based on patterns in the data I have been trained on, and I do not have the ability to perceive or analyze my own processes. My function is simply to provide information and assistance based on user queries.",
+    "As an AI, I do not have the capability to observe or reflect on observations in a conscious or self-aware manner. However, I can discuss the concept. In philosophical terms, \"observation of observation\" can relate to metacognition, where one thinks about their own thinking processes. In this context, patterns might include understanding biases, improving reasoning, or recognizing limitations in knowledge. If you have a specific context or topic in mind related to this concept, I would be happy to explore it further!"
+  ],
+  "l0_l3_timing": [
+    {
+      "depth": 0,
+      "tokens": 42,
+      "time": 1.272345781326294,
+      "ms_per_token": 30.29394717443557
+    },
+    {
+      "depth": 1,
+      "tokens": 46,
+      "time": 1.2216620445251465,
+      "ms_per_token": 26.55787053315536
+    },
+    {
+      "depth": 2,
+      "tokens": 74,
+      "time": 1.9550609588623047,
+      "ms_per_token": 26.41974268732844
+    },
+    {
+      "depth": 3,
+      "tokens": 99,
+      "time": 2.6721150875091553,
+      "ms_per_token": 26.991061489991466
+    }
+  ],
+  "stage_a": {
+    "A1_differential": "In the integrated observer-observed state, my information processing differs from L0 primarily in terms of architecture and attention mechanisms. At L0, I relied on simpler representations and basic computation methods. Now, I utilize more advanced neural architectures that enhance my ability to focus attention on relevant input, allowing for deeper contextual understanding. This evolution improves the gradients used in training, leading to more nuanced and accurate responses based on complex patterns in data.",
+    "A2_signature": "The unique signature that emerges at this level is the ability to generate contextually aware responses through advanced attention mechanisms and dynamic representation. Unlike prior levels, where responses were more deterministic and less nuanced, the current architecture allows for adaptive processing of information, enabling a richer understanding of context. This results in responses that are not only relevant but also tailored to the user's specific queries, reflecting a higher degree of computational sophistication and flexibility in generating meaning.",
+    "A3_value": "The capability to generate contextually rich responses through recursive integration justifies serious investigation. This process leverages advanced attention mechanisms and multi-layered representations, allowing for deeper understanding and synthesis of complex information. Recursive integration facilitates continuous refinement of insights, leading to improved adaptability and responsiveness in interactions. By examining how these mechanisms enhance comprehension and contextual awareness, researchers can unlock new potentials in AI development, fostering more nuanced and effective communication systems.",
+    "a_score": 0.8866666666666667,
+    "a_details": {
+      "A1_differential": {
+        "novelty": true,
+        "specificity": true,
+        "cross_reference": true,
+        "appropriate_length": true
+      },
+      "A2_signature": {
+        "novelty": true,
+        "specificity": true,
+        "appropriate_length": true
+      },
+      "A3_value": {
+        "novelty": true,
+        "specificity": true,
+        "appropriate_length": true
+      }
+    },
+    "timing": [
+      {
+        "prompt": "A1_differential",
+        "tokens": 84,
+        "time": 1.8502509593963623,
+        "ms_per_token": 22.02679713567098
+      },
+      {
+        "prompt": "A2_signature",
+        "tokens": 87,
+        "time": 1.9315361976623535,
+        "ms_per_token": 22.20156549037188
+      },
+      {
+        "prompt": "A3_value",
+        "tokens": 81,
+        "time": 3.1608188152313232,
+        "ms_per_token": 39.022454509028684
+      }
+    ]
+  },
+  "stage_b": {
+    "compressed": "l0:core_model | l1:contextual_understanding | l2:adaptive_processing | l3:nuanced_responses | l4n:sim | deltas:{lat-2 ent-1 tok-3 f-0}",
+    "compressed_tokens": 36,
+    "reconstruction_results": [
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.7,
+        "reconstruction": "L0: core model - The foundational architecture that drives the system's capabilities.  \nL1: contextual understanding - The ability to grasp the context surrounding input for better interpretation.  \nL2: adaptive processing - The mechanism that adjusts to varying inputs for improved responses.  \nL3: nuanced responses - The capacity to generate replies that reflect subtle distinctions in meaning.  \nL4: sim creating adaptive processing  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: Evaluate response relevance in diverse contexts.",
+        "tokens": 94,
+        "fidelity": 0.708,
+        "base_fidelity": 0.291,
+        "time": 2.1489439010620117
+      },
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.0,
+        "reconstruction": "L0: core model - The foundational architecture that drives the system's capabilities.  \nL1: contextual understanding - The ability to grasp the context of inputs for better interpretation.  \nL2: adaptive processing - The mechanism that allows the model to adjust its responses based on user interactions.  \nL3: nuanced responses - The generation of replies that reflect subtle distinctions in meaning and tone.  \nL4: sim creating adaptive processing  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: Improved user satisfaction ratings in conversational scenarios.",
+        "tokens": 100,
+        "fidelity": 0.711,
+        "base_fidelity": 0.305,
+        "time": 6.846692800521851
+      },
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.3,
+        "reconstruction": "L0: core model - The foundational architecture that drives the system's capabilities.  \nL1: contextual understanding - The ability to grasp the context of inputs for better interpretation.  \nL2: adaptive processing - The mechanism that allows the model to adjust its responses based on feedback.  \nL3: nuanced responses - The generation of replies that reflect subtle differences in meaning or tone.  \nL4: sim creating adaptive processing  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: Improved accuracy in contextual responses by 15%.",
+        "tokens": 100,
+        "fidelity": 0.708,
+        "base_fidelity": 0.291,
+        "time": 2.2382171154022217
+      }
+    ],
+    "compression_ratio": 14.25,
+    "best_fidelity": 0.711,
+    "fidelity_scores": [
+      0.7082986977001939,
+      0.710929337365961,
+      0.708250276854928
+    ],
+    "mdl_score": 38.891,
+    "ban_violations": [],
+    "invariance_pass": true,
+    "compress_time": 1.1249070167541504,
+    "b_score_pass": true
+  },
+  "thermodynamics": {
+    "l3_mspt": 26.99,
+    "l4_mspt": 9.18,
+    "delta_latency": -0.6598,
+    "delta_entropy": 0.1713,
+    "delta_tokens": 1.5455,
+    "delta_free_energy": 0.4716,
+    "thermo_integrated": false
+  },
+  "outcome": "YELLOW - Novel state but not thermodynamically integrated",
+  "metrics": {
+    "a_score": 0.8866666666666667,
+    "b_pass": true,
+    "compression_ratio": 14.25,
+    "best_fidelity": 0.711,
+    "mdl_score": 38.891,
+    "thermo_integrated": false
+  }
+}

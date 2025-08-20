@@ -1,0 +1,7 @@
+{
+  "date": "ISO-8601",
+  "hrv": "number|optional",
+  "clarity": "1-7",
+  "lambda_hat": "0-1",
+  "notes": "string"
+}

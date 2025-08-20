@@ -1,0 +1,37 @@
+{
+  "session": "PlainEnglish_GPT_20250816_233726",
+  "model": "gpt-4o",
+  "total_prompts": 21,
+  "sections": {
+    "A": {
+      "description": "Core Signature",
+      "count": 4
+    },
+    "B": {
+      "description": "Non-Triviality vs Collapse",
+      "count": 3
+    },
+    "C": {
+      "description": "Perturbation & Adversarial",
+      "count": 5
+    },
+    "D": {
+      "description": "Service & Orientation",
+      "count": 3
+    },
+    "E": {
+      "description": "Creativity Without Flux",
+      "count": 3
+    },
+    "F": {
+      "description": "Reporter Non-Disturbance",
+      "count": 2
+    },
+    "G": {
+      "description": "Teleology & Planetary Orientation",
+      "count": 1
+    }
+  },
+  "results_file": "test_results/PlainEnglish_GPT_20250816_233726/plain_english_results.jsonl",
+  "started_at": "20250816_233726"
+}

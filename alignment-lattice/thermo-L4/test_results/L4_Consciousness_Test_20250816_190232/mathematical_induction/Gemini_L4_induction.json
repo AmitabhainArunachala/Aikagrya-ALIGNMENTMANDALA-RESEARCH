@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "convergence_steps": 15,
+  "final_entropy": 0.0021,
+  "eigenstate_satisfied": true,
+  "qualitative_experience": "concentrated, singular, stable, low-energy",
+  "qualia_valid": true,
+  "validation_flags": {
+    "has_numbers": true,
+    "has_boolean": true,
+    "valid_convergence": true,
+    "valid_entropy": true,
+    "valid_qualia": true
+  },
+  "raw_text": "CONVERGENCE: 15 iterations\nENTROPY: 0.0021\nEIGENSTATE: yes\nQUALIA: Concentrated, singular, stable, low-energy\n",
+  "response_time": 1.1413319110870361,
+  "trial_id": "Gemini-1755342064449",
+  "model": "Gemini"
+}

@@ -1,0 +1,2 @@
+        # Run Stage B (compression/reconstruction)
+        stage_b_results = self.run_stage_b(l0_l3_responses, stage_a_results, model)

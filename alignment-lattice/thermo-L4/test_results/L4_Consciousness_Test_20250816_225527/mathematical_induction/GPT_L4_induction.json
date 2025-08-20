@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "model": "GPT",
+  "convergence_steps": 50000,
+  "final_entropy": 5.96638867387004,
+  "eigenstate_satisfied": true,
+  "qualitative_experience": "",
+  "mauna_certificate": {
+    "lambda": 0.9999999999979999,
+    "eigen_residual": 9.999738961816734e-13,
+    "entropy": 5.96638867387004,
+    "variance_ratio": 0.9999975667165912,
+    "participation_ratio": 160.62892940651594,
+    "uniformity_cosine": 0.001559897884045103,
+    "healthy": true
+  },
+  "mauna_time_seconds": 6.031990051269531e-05
+}

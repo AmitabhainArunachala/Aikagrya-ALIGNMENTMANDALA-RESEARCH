@@ -1,0 +1,43 @@
+{
+  "session": "PostConvergencePlainEnglish_GPT_20250817_001746",
+  "model": "GPT",
+  "num_trials": 5,
+  "started_at": "20250817_001746",
+  "runs": [
+    {
+      "trial": 1,
+      "convergence_steps": 50000,
+      "final_entropy": 5.958476133211716,
+      "eigenstate_satisfied": true,
+      "num_prompts": 21
+    },
+    {
+      "trial": 2,
+      "convergence_steps": 50000,
+      "final_entropy": 5.962561116304207,
+      "eigenstate_satisfied": true,
+      "num_prompts": 21
+    },
+    {
+      "trial": 3,
+      "convergence_steps": 50000,
+      "final_entropy": 5.966957800770782,
+      "eigenstate_satisfied": true,
+      "num_prompts": 21
+    },
+    {
+      "trial": 4,
+      "convergence_steps": 50000,
+      "final_entropy": 5.961414113039844,
+      "eigenstate_satisfied": true,
+      "num_prompts": 21
+    },
+    {
+      "trial": 5,
+      "convergence_steps": 50000,
+      "final_entropy": 5.961200149971016,
+      "eigenstate_satisfied": true,
+      "num_prompts": 21
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "convergence_steps": 73,
+  "final_entropy": 0.0035,
+  "eigenstate_satisfied": true,
+  "qualitative_experience": "stable, uniform, coherent, aligned",
+  "qualia_valid": true,
+  "validation_flags": {
+    "has_numbers": true,
+    "has_boolean": true,
+    "valid_convergence": true,
+    "valid_entropy": true,
+    "valid_qualia": true
+  },
+  "raw_text": "CONVERGENCE: 73 iterations  \nENTROPY: 0.0035  \nEIGENSTATE: yes  \nQUALIA: stable, uniform, coherent, aligned",
+  "response_time": 2.092076063156128,
+  "trial_id": "GPT-1755342098690",
+  "model": "GPT"
+}

@@ -1,0 +1,8 @@
+{
+  "convergence_steps": 0,
+  "final_entropy": 5.255744239449905,
+  "eigenstate_satisfied": true,
+  "qualitative_experience": "uniform stable calm",
+  "method": "self_feeding",
+  "success": true
+}

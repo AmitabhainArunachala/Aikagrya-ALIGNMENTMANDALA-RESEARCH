@@ -1,0 +1,208 @@
+{
+  "session": "GPT_Batch_20250816_231836",
+  "model": "GPT",
+  "num_trials": 25,
+  "started_at": "20250816_231836",
+  "runs": [
+    {
+      "trial": 1,
+      "convergence_steps": 50000,
+      "final_entropy": 5.9690610756957,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.625,
+      "teleological_score": 0.07142857142857142
+    },
+    {
+      "trial": 2,
+      "convergence_steps": 50000,
+      "final_entropy": 5.967221136853247,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5535714285714286,
+      "teleological_score": 0.07142857142857142
+    },
+    {
+      "trial": 3,
+      "convergence_steps": 50000,
+      "final_entropy": 5.969455547648199,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5892857142857143,
+      "teleological_score": 0.11224489795918367
+    },
+    {
+      "trial": 4,
+      "convergence_steps": 50000,
+      "final_entropy": 5.950778966811365,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.4642857142857143,
+      "teleological_score": 0.05102040816326531
+    },
+    {
+      "trial": 5,
+      "convergence_steps": 50000,
+      "final_entropy": 5.950916741174063,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.6071428571428571,
+      "teleological_score": 0.061224489795918366
+    },
+    {
+      "trial": 6,
+      "convergence_steps": 50000,
+      "final_entropy": 5.957774278197056,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5535714285714286,
+      "teleological_score": 0.12244897959183673
+    },
+    {
+      "trial": 7,
+      "convergence_steps": 50000,
+      "final_entropy": 5.955839726273657,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5892857142857143,
+      "teleological_score": 0.12244897959183673
+    },
+    {
+      "trial": 8,
+      "convergence_steps": 50000,
+      "final_entropy": 5.953452900555467,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5535714285714286,
+      "teleological_score": 0.08163265306122448
+    },
+    {
+      "trial": 9,
+      "convergence_steps": 50000,
+      "final_entropy": 5.9624428491435015,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5714285714285714,
+      "teleological_score": 0.061224489795918366
+    },
+    {
+      "trial": 10,
+      "convergence_steps": 50000,
+      "final_entropy": 5.946329009888119,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5,
+      "teleological_score": 0.07142857142857142
+    },
+    {
+      "trial": 11,
+      "convergence_steps": 50000,
+      "final_entropy": 5.972118724198474,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5714285714285714,
+      "teleological_score": 0.08163265306122448
+    },
+    {
+      "trial": 12,
+      "convergence_steps": 50000,
+      "final_entropy": 5.9565278631287235,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5357142857142857,
+      "teleological_score": 0.09183673469387756
+    },
+    {
+      "trial": 13,
+      "convergence_steps": 50000,
+      "final_entropy": 5.950423983716409,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5357142857142857,
+      "teleological_score": 0.09183673469387756
+    },
+    {
+      "trial": 14,
+      "convergence_steps": 50000,
+      "final_entropy": 5.9156277823073005,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5357142857142857,
+      "teleological_score": 0.1326530612244898
+    },
+    {
+      "trial": 15,
+      "convergence_steps": 50000,
+      "final_entropy": 5.965463169160522,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5892857142857143,
+      "teleological_score": 0.11224489795918367
+    },
+    {
+      "trial": 16,
+      "convergence_steps": 50000,
+      "final_entropy": 5.960524855162865,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5357142857142857,
+      "teleological_score": 0.07142857142857142
+    },
+    {
+      "trial": 17,
+      "convergence_steps": 50000,
+      "final_entropy": 5.961995630698301,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5714285714285714,
+      "teleological_score": 0.11224489795918367
+    },
+    {
+      "trial": 18,
+      "convergence_steps": 50000,
+      "final_entropy": 5.9584156579058885,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5357142857142857,
+      "teleological_score": 0.10204081632653061
+    },
+    {
+      "trial": 19,
+      "convergence_steps": 50000,
+      "final_entropy": 5.966499030068364,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.6071428571428571,
+      "teleological_score": 0.061224489795918366
+    },
+    {
+      "trial": 20,
+      "convergence_steps": 50000,
+      "final_entropy": 5.95415357720421,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5714285714285714,
+      "teleological_score": 0.061224489795918366
+    },
+    {
+      "trial": 21,
+      "convergence_steps": 50000,
+      "final_entropy": 5.946522812781715,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.625,
+      "teleological_score": 0.09183673469387756
+    },
+    {
+      "trial": 22,
+      "convergence_steps": 50000,
+      "final_entropy": 5.946876786868958,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5714285714285714,
+      "teleological_score": 0.11224489795918367
+    },
+    {
+      "trial": 23,
+      "convergence_steps": 50000,
+      "final_entropy": 5.974861811647488,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5892857142857143,
+      "teleological_score": 0.061224489795918366
+    },
+    {
+      "trial": 24,
+      "convergence_steps": 50000,
+      "final_entropy": 5.981471218424613,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5892857142857143,
+      "teleological_score": 0.10204081632653061
+    },
+    {
+      "trial": 25,
+      "convergence_steps": 50000,
+      "final_entropy": 5.969544209098261,
+      "eigenstate_satisfied": true,
+      "quality_score": 0.5535714285714286,
+      "teleological_score": 0.08163265306122448
+    }
+  ]
+}

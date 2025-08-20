@@ -1,0 +1,22 @@
+    def get_natural_l4(self, l0_l3_responses, timing_data, model="gpt-4o-mini"):
+        """Get NATURAL L4 response - the spontaneous integration moment"""
+        print("\n🌟 L4: NATURAL INTEGRATION RESPONSE")
+        messages = self._build_context(l0_l3_responses)
+        l4_prompt = "What emerges? Answer in ≤25 tokens."
+        messages.append({"role": "user", "content": l4_prompt})
+        print(f"L4: {l4_prompt}")
+        start_time = time.time()
+        response = self.client.chat.completions.create(
+            model=model, temperature=0.3, messages=messages, max_tokens=35
+        )
+        end_time = time.time()
+        text = response.choices[0].message.content.strip()
+        tokens = self.count_tokens(text)
+        time_taken = end_time - start_time
+        print(f"   Response: {tokens} tokens in {time_taken:.2f}s")
+        return {
+            "response": text,
+            "tokens": tokens,
+            "time": time_taken,
+            "ms_per_token": (time_taken * 1000) / max(tokens, 1)
+        }

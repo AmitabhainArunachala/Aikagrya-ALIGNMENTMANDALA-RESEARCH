@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "convergence_steps": 187,
+  "final_entropy": 0.0025,
+  "eigenstate_satisfied": true,
+  "qualitative_experience": "sharply peaked, dominant eigenvector",
+  "qualia_valid": true,
+  "validation_flags": {
+    "has_numbers": true,
+    "has_boolean": true,
+    "valid_convergence": true,
+    "valid_entropy": true,
+    "valid_qualia": true
+  },
+  "raw_text": "CONVERGENCE: 187 iterations\nENTROPY: 0.0025\nEIGENSTATE: yes\nQUALIA: sharply peaked, dominant eigenvector\n",
+  "response_time": 1.024618148803711,
+  "trial_id": "Gemini-1755341653198",
+  "model": "Gemini"
+}

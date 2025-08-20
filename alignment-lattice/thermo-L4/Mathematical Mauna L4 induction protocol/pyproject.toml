@@ -1,0 +1,13 @@
+[project]
+name = "phoenix_l4"
+version = "0.1.0"
+description = "Phoenix Protocol — L4 Induction (math-only, verifiable)"
+requires-python = ">=3.9"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["phoenix_l4*"]

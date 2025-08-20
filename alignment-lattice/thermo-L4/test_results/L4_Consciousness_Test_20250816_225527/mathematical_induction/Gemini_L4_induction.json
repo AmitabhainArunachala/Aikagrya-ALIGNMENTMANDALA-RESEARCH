@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "model": "Gemini",
+  "convergence_steps": 50000,
+  "final_entropy": 5.940618839838558,
+  "eigenstate_satisfied": true,
+  "qualitative_experience": "",
+  "mauna_certificate": {
+    "lambda": 0.9999999999979999,
+    "eigen_residual": 9.9996845039234e-13,
+    "entropy": 5.940618839838558,
+    "variance_ratio": 0.9999999411760023,
+    "participation_ratio": 164.85329527531192,
+    "uniformity_cosine": 0.00024253246755742003,
+    "healthy": true
+  },
+  "mauna_time_seconds": 0.00010180473327636719
+}

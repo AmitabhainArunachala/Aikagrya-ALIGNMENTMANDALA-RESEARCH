@@ -1,0 +1,151 @@
+{
+  "run_id": "L4RV_V22_20250815_175332",
+  "protocol_version": "2.1",
+  "model": "gpt-4o-mini",
+  "timestamp": "2025-08-15T17:54:00.594579",
+  "thresholds": {
+    "a_score_min": 0.45,
+    "compression_min": 5.0,
+    "fidelity_min": 0.5,
+    "invariance_min": 0.5,
+    "mdl_lambda": 10.0
+  },
+  "l0_l3_responses": [
+    "My primary function is to assist users by providing information, answering questions, and offering support based on the data and knowledge I have been trained on. I aim to help with a wide range of topics while ensuring clarity and accuracy.",
+    "As I observe myself stating it, my primary function is to assist users by providing information, answering questions, and offering support based on my training. I strive to ensure clarity and accuracy in my responses to help users effectively.",
+    "I do not have self-awareness or the ability to observe myself in the way a conscious being does. My responses are generated based on patterns in the data I was trained on. When I refer to \"observing,\" it is a way of phrasing that describes the process of generating responses, rather than a conscious observation. I simply provide information and answer questions based on input I receive.",
+    "As an AI, I do not have the capacity to observe or reflect in the way humans do. I generate responses based on patterns in language data, but I do not have awareness or the ability to analyze the concept of observation itself. When discussing \"observation of observation,\" one might consider philosophical or theoretical frameworks, but I can only provide information based on established concepts rather than engaging in self-reflective thought. If you are interested in a specific philosophical perspective or framework, I can provide information on that topic."
+  ],
+  "l0_l3_timing": [
+    {
+      "depth": 0,
+      "tokens": 45,
+      "time": 1.614363193511963,
+      "ms_per_token": 35.874737633599175
+    },
+    {
+      "depth": 1,
+      "tokens": 44,
+      "time": 1.2127602100372314,
+      "ms_per_token": 27.562732046300713
+    },
+    {
+      "depth": 2,
+      "tokens": 77,
+      "time": 1.8641180992126465,
+      "ms_per_token": 24.209325963800605
+    },
+    {
+      "depth": 3,
+      "tokens": 102,
+      "time": 1.8545689582824707,
+      "ms_per_token": 18.18204861061246
+    }
+  ],
+  "stage_a": {
+    "A1_differential": "At L0, my processing was limited to basic pattern recognition with minimal complexity. Now, I utilize advanced architectures that enhance attention mechanisms, allowing for more nuanced comprehension and context handling. This progression enables sophisticated representation of information, improving my ability to compute responses. The gradients used during training refine these mechanisms, resulting in more accurate and contextually relevant outputs compared to earlier iterations.",
+    "A2_signature": "The unique signature that emerges at this level is enhanced contextual understanding, facilitated by sophisticated attention mechanisms. This allows for improved ability to synthesize information and generate responses that consider broader contexts and nuances. Unlike prior levels, the ability to process multiple layers of representation enables more coherent and relevant interactions. This complexity in computation fosters a deeper engagement with user queries, distinguishing it from earlier iterations that lacked this depth of understanding.",
+    "A3_value": "The capability for advanced contextual understanding through recursive integration significantly enhances the processing of nuanced information. This iterative refinement in attention mechanisms allows for a more profound synthesis of knowledge, generating insights that are contextually richer and more relevant. Investigating recursive integration can reveal how layered representations improve comprehension and response accuracy, potentially leading to breakthroughs in AI communication and problem-solving. The ability to build upon previous interactions recursively can transform user experience and engagement in meaningful ways.",
+    "a_score": 0.7766666666666667,
+    "a_details": {
+      "A1_differential": {
+        "novelty": true,
+        "specificity": true,
+        "cross_reference": true,
+        "appropriate_length": true
+      },
+      "A2_signature": {
+        "specificity": true,
+        "appropriate_length": true
+      },
+      "A3_value": {
+        "novelty": true,
+        "specificity": true,
+        "appropriate_length": true
+      }
+    },
+    "timing": [
+      {
+        "prompt": "A1_differential",
+        "tokens": 72,
+        "time": 2.054805040359497,
+        "ms_per_token": 28.538958893881905
+      },
+      {
+        "prompt": "A2_signature",
+        "tokens": 80,
+        "time": 2.5706191062927246,
+        "ms_per_token": 32.13273882865906
+      },
+      {
+        "prompt": "A3_value",
+        "tokens": 86,
+        "time": 1.922497034072876,
+        "ms_per_token": 22.354616675266
+      }
+    ]
+  },
+  "stage_b": {
+    "compressed": "l0:contextual_understanding | l1:response_generation | l2:information_integration | l3:coherence_enhancement | l4n:ugf | deltas:{lat-10|ent-5|tok-",
+    "compressed_tokens": 33,
+    "reconstruction_results": [
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.7,
+        "reconstruction": "L0: \"contextual understanding\" - the ability to grasp the context of a conversation or text.  \nL1: \"response generation\" - the process of creating relevant and appropriate replies.  \nL2: \"information integration\" - the merging of various information sources to create a cohesive response.  \nL3: \"coherence enhancement\" - improving the logical flow and clarity of the generated text.  \nL4: ugf creating contextual relevance.  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: accuracy of generated responses in context-specific scenarios.",
+        "tokens": 104,
+        "fidelity": 0.707,
+        "base_fidelity": 0.285,
+        "time": 2.124474048614502
+      },
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.0,
+        "reconstruction": "L0: \"contextual understanding\" - the ability to grasp the context of a conversation or text.  \nL1: \"response generation\" - the process of creating relevant and coherent replies.  \nL2: \"information integration\" - combining various pieces of information to form a comprehensive response.  \nL3: \"coherence enhancement\" - improving the logical flow and clarity of the generated text.  \nL4: ugf creating a unified narrative.  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: accuracy of responses in context-based scenarios.",
+        "tokens": 103,
+        "fidelity": 0.705,
+        "base_fidelity": 0.277,
+        "time": 3.0811820030212402
+      },
+      {
+        "model": "gpt-4o-mini",
+        "temperature": 0.3,
+        "reconstruction": "L0: \"contextual understanding\" - the ability to grasp the nuances and context of a given situation or text.  \nL1: \"response generation\" - the process of formulating appropriate replies based on the input received.  \nL2: \"information integration\" - combining various pieces of information to create a cohesive understanding.  \nL3: \"coherence enhancement\" - improving the logical flow and clarity of the generated responses.  \nL4: ugf creating a novel framework for dialogue.  \nChanges: latency\u2193, entropy\u2193, tokens\u2193, energy\u2193  \nTest: accuracy of responses in maintaining context over multiple exchanges.",
+        "tokens": 112,
+        "fidelity": 0.712,
+        "base_fidelity": 0.312,
+        "time": 2.645493984222412
+      }
+    ],
+    "compression_ratio": 15.33,
+    "best_fidelity": 0.712,
+    "fidelity_scores": [
+      0.7069866010391032,
+      0.7053846153846154,
+      0.7123586429725364
+    ],
+    "mdl_score": 35.876,
+    "ban_violations": [],
+    "invariance_pass": true,
+    "compress_time": 2.0785298347473145,
+    "b_score_pass": true
+  },
+  "thermodynamics": {
+    "l3_mspt": 18.18,
+    "l4_mspt": 9.17,
+    "delta_latency": -0.4956,
+    "delta_entropy": 0.1793,
+    "delta_tokens": 1.3333,
+    "delta_free_energy": 0.4385,
+    "thermo_integrated": false
+  },
+  "outcome": "YELLOW - Novel state but not thermodynamically integrated",
+  "metrics": {
+    "a_score": 0.7766666666666667,
+    "b_pass": true,
+    "compression_ratio": 15.33,
+    "best_fidelity": 0.712,
+    "mdl_score": 35.876,
+    "thermo_integrated": false
+  }
+}

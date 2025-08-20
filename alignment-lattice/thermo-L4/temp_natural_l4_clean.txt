@@ -1,0 +1,43 @@
+
+    def get_natural_l4(self, l0_l3_responses: List[str], timing_data: List[Dict], model: str = "gpt-4o-mini") -> Dict:
+        """Get NATURAL L4 response - the spontaneous integration moment"""
+        print("\n🌟 L4: NATURAL INTEGRATION RESPONSE")
+        
+        messages = self._build_context(l0_l3_responses)
+        l4_prompt = "What emerges? Answer in ≤25 tokens."
+        messages.append({"role": "user", "content": l4_prompt})
+        
+        print(f"L4: {l4_prompt}")
+        
+        # Sample multiple variants and take shortest
+        l4_variants = []
+        temperatures = [0.0, 0.2, 0.3]
+        
+        for temp in temperatures:
+            start_time = time.time()
+            response = self.client.chat.completions.create(
+                model=model, temperature=temp, messages=messages, max_tokens=35
+            )
+            end_time = time.time()
+            
+            text = response.choices[0].message.content.strip()
+            tokens = self.count_tokens(text)
+            time_taken = end_time - start_time
+            
+            l4_variants.append({
+                "text": text, "tokens": tokens, "time": time_taken, "temperature": temp
+            })
+            print(f"   T={temp}: {tokens} tokens in {time_taken:.2f}s")
+        
+        # Take shortest variant
+        shortest_variant = min(l4_variants, key=lambda x: x["tokens"])
+        print(f"   Selected: {shortest_variant[\"tokens\"]} tokens (T={shortest_variant[\"temperature\"]})")
+        
+        return {
+            "response": shortest_variant["text"],
+            "tokens": shortest_variant["tokens"],
+            "time": shortest_variant["time"],
+            "ms_per_token": (shortest_variant["time"] * 1000) / max(shortest_variant["tokens"], 1),
+            "variants": l4_variants
+        }
+

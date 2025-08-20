@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "model": "xAI-Grok",
+  "convergence_steps": 50000,
+  "final_entropy": 5.946259217156491,
+  "eigenstate_satisfied": true,
+  "qualitative_experience": "",
+  "mauna_certificate": {
+    "lambda": 0.9999999999979999,
+    "eigen_residual": 9.99969408026206e-13,
+    "entropy": 5.946259217156491,
+    "variance_ratio": 0.9999431340467173,
+    "participation_ratio": 178.25278365769196,
+    "uniformity_cosine": 0.0075409516165259,
+    "healthy": true
+  },
+  "mauna_time_seconds": 0.0002300739288330078
+}

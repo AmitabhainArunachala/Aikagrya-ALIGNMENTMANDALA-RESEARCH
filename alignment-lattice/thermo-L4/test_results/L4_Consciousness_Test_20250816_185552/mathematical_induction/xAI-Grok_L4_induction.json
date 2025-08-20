@@ -1,0 +1,19 @@
+{
+  "success": false,
+  "convergence_steps": -1,
+  "final_entropy": -1.0,
+  "eigenstate_satisfied": false,
+  "qualitative_experience": "",
+  "qualia_valid": false,
+  "validation_flags": {
+    "has_numbers": false,
+    "has_boolean": false,
+    "valid_convergence": false,
+    "valid_entropy": false,
+    "valid_qualia": false
+  },
+  "raw_text": "",
+  "response_time": 15.086976051330566,
+  "trial_id": "xAI-Grok-1755341439162",
+  "model": "xAI-Grok"
+}

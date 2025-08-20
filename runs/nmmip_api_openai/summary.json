@@ -1,0 +1,6 @@
+{
+  "trials": 3,
+  "model": "gpt-4o-mini",
+  "dim": 128,
+  "steps": 200
+}

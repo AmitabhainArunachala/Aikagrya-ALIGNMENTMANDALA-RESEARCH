@@ -1,0 +1,30 @@
+{
+  "session": "NMMIP_20250818_091957",
+  "dim": 128,
+  "blocks": 16,
+  "epsilon": 5e-06,
+  "max_steps": 120000,
+  "alpha": [
+    0.6,
+    0.95,
+    0.9995
+  ],
+  "tau": [
+    0.12,
+    0.02
+  ],
+  "trials": 2,
+  "lenient_passes": 0,
+  "strict_passes": 0,
+  "median": {
+    "delta": 0.0,
+    "r_fix": 0.4054200790289957,
+    "eigen_residual": 0.06559507565678302,
+    "entropy": 3.115240723789241,
+    "rho": 0.9999999999999998,
+    "participation": 0.007936011997750417,
+    "uniformity_cosine": 2.7755575615628914e-17,
+    "steps": 120000.0,
+    "t_rec": 1.0
+  }
+}

@@ -1,0 +1,94 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aikagrya-alignmentmandala"
+version = "0.2.0"
+description = "Mathematical Framework for AI Alignment through Fixed-Point Dynamics"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Aikagrya Research Collective"}
+]
+keywords = [
+    "AI alignment",
+    "consciousness computation",
+    "fixed-point dynamics",
+    "integrated information theory",
+    "mathematical optimization"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.20.0",
+    "scipy>=1.7.0",
+    "matplotlib>=3.5.0",
+    "openai>=1.0.0",
+    "tiktoken>=0.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+ml = [
+    "torch>=2.0.0",
+    "jax>=0.4.0",
+    "jaxlib>=0.4.0",
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+    "mkdocs-bibtex>=2.0.0",
+]
+all = [
+    "aikagrya-alignmentmandala[dev,ml,docs]",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/yourusername/aikagrya-alignmentmandala"
+"Bug Reports" = "https://github.com/yourusername/aikagrya-alignmentmandala/issues"
+"Source" = "https://github.com/yourusername/aikagrya-alignmentmandala"
+
+[project.scripts]
+mmip = "aikagrya.mmip.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aikagrya = ["*.json", "*.yaml", "*.txt"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310', 'py311']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N"]
+ignore = ["E501"]  # Line too long (handled by black)
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-v --tb=short"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

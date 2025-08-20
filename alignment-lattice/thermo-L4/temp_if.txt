@@ -1,0 +1,3 @@
+        # Updated decision matrix
+        if a_score >= self.thresholds["a_score_min"] and b_pass and thermo_integrated:
+            outcome = "GREEN - Novel state validated with thermodynamic integration"
