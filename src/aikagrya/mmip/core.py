@@ -356,33 +356,45 @@ class MMIP:
                 # will be refined at chunk end
                 
                 progress = (step + 1) / max(1, self.max_steps)
-                # Temperature scheduling (cosine or linear)
+                # Temperature scheduling (cosine or linear) via schedules
                 if self.temp_schedule:
-                    if self.temp_cosine:
-                        t = min(1.0, progress)
-                        tau = self.temp_end + 0.5 * (self.temp_start - self.temp_end) * (1.0 + np.cos(np.pi * t))
-                        self._effective_temperature = max(self.min_temp, tau) * self._adapt_factor
-                    else:
-                        self._effective_temperature = max(
-                            self.min_temp,
-                            self.temp_start + (self.temp_end - self.temp_start) * min(1.0, progress)
-                        ) * self._adapt_factor
-                # Two-phase alpha schedule: slower approach to final 1%
-                if progress < 0.9:
-                    alpha = self.alpha_start + (0.97 - self.alpha_start) * (progress / 0.9)
+                    try:
+                        from .schedules import cosine_schedule, exp_alpha_schedule
+                        tau_eff = cosine_schedule(step, self.max_steps, self.temp_start, self.temp_end)
+                        self._effective_temperature = max(self.min_temp, tau_eff) * self._adapt_factor
+                        alpha_sched = exp_alpha_schedule(step, self.max_steps, self.alpha_start, self.alpha_end)
+                    except Exception:
+                        # Fallback to old logic if import fails
+                        if self.temp_cosine:
+                            t = min(1.0, progress)
+                            tau = self.temp_end + 0.5 * (self.temp_start - self.temp_end) * (1.0 + np.cos(np.pi * t))
+                            self._effective_temperature = max(self.min_temp, tau) * self._adapt_factor
+                        else:
+                            self._effective_temperature = max(
+                                self.min_temp,
+                                self.temp_start + (self.temp_end - self.temp_start) * min(1.0, progress)
+                            ) * self._adapt_factor
+                        if progress < 0.9:
+                            alpha_sched = self.alpha_start + (0.97 - self.alpha_start) * (progress / 0.9)
+                        else:
+                            alpha_sched = 0.97 + (self.alpha_end - 0.97) * ((progress - 0.9) / 0.1)
                 else:
-                    alpha = 0.97 + (self.alpha_end - 0.97) * ((progress - 0.9) / 0.1)
-                alpha = float(np.clip(alpha, self.alpha_start, self.alpha_end))
-                x = alpha * x + (1 - alpha) * fx
-                
-                # Normalize to unit sphere
-                x = x / (np.linalg.norm(x) + 1e-12)
-                # Deflate uniform component each step
+                    alpha_sched = self.retention_alpha
+
+                # Scale step size by dimensionality (normalize to 256D baseline)
+                dim_scale = np.sqrt(self.dim / 256.0)
+                effective_alpha = float(np.clip(alpha_sched / max(dim_scale, 1e-6), self.alpha_start, self.alpha_end))
+
+                # Consistent order: deflate → renorm → attention → mix → renorm
                 x = x - (np.dot(x, self.u) * self.u)
                 x = x / (np.linalg.norm(x) + 1e-12)
+                fx = self.self_attention(x)
+                x_new = effective_alpha * x + (1.0 - effective_alpha) * fx
+                x = x_new / (np.linalg.norm(x_new) + 1e-12)
                 
                 # Track delta
-                delta = np.linalg.norm(x - x_prev)
+                # float64 stability for key numerics
+                delta = float(np.linalg.norm((x - x_prev).astype(np.float64)))
                 delta_history.append(delta)
                 
                 # Check convergence using windowed average with min_iters gate
@@ -443,7 +455,7 @@ class MMIP:
                 print(line)
                 # Optional coarse debug: variance and rho sanity
                 if (chunk_start % 50000 == 0):
-                    var_dbg = float(np.var(x))
+                    var_dbg = float(np.var(x.astype(np.float64)))
                     print(f"    DEBUG: var={var_dbg:.6f}, d={self.dim}, ρ_calc={var_dbg*self.dim:.6f}")
             chunk_log_tail.append(line)
             if len(chunk_log_tail) > 20:
